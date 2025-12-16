@@ -4,6 +4,8 @@ import * as THREE from 'three';
 import { LiveLineChart as LiveLineChartImpl } from '@dynamicgl/charts';
 import { LiveLineChartProps } from './types';
 import { TimeWindow } from '@dynamicgl/core';
+import { BasicAxes } from './BasicAxes';
+import { AxisLabels } from './AxisLabels';
 
 /**
  * LiveLineChart - React component for rendering live streaming line charts
@@ -28,6 +30,18 @@ export function LiveLineChart({
   yDomain,
   autoScaleY = false,
   yPadding = 0.1,
+  // Styling options
+  backgroundColor,
+  axisColor = '#000000',
+  gridColor = '#cccccc',
+  showAxes = true,
+  showGrid = true,
+  // Label options
+  showLabels = false,
+  xTickCount = 5,
+  yTickCount = 5,
+  labelColor = '#666666',
+  labelFormatter,
 }: LiveLineChartProps) {
   const chartRef = useRef<LiveLineChartImpl | null>(null);
   const timeWindowRef = useRef<TimeWindow | null>(null);
@@ -219,6 +233,40 @@ export function LiveLineChart({
   if (!isReady || !chartRef.current) return null;
 
   const lineObject = chartRef.current.getObject3D();
-  return <primitive object={lineObject} />;
+  
+  // Get current domains for labels
+  const currentXDomain = xDomain ?? (timeWindowRef.current ? timeWindowRef.current.getRange() : [0, 1]);
+  
+  // Calculate Y domain for labels
+  let currentYDomain: [number, number] = yDomain ?? [0, 100];
+  if (!yDomain && autoScaleY && data.length > 0) {
+    const yValues = data.map(p => p.y);
+    const min = Math.min(...yValues);
+    const max = Math.max(...yValues);
+    const padding = (max - min) * yPadding;
+    currentYDomain = [min - padding, max + padding];
+  }
+
+  return (
+    <>
+      <primitive object={lineObject} />
+      {(showAxes || showGrid) && (
+        <BasicAxes
+          axisColor={axisColor}
+          gridColor={gridColor}
+        />
+      )}
+      {showLabels && (
+        <AxisLabels
+          xDomain={currentXDomain}
+          yDomain={currentYDomain}
+          xTickCount={xTickCount}
+          yTickCount={yTickCount}
+          labelColor={labelColor}
+          labelFormatter={labelFormatter}
+        />
+      )}
+    </>
+  );
 }
 

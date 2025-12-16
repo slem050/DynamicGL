@@ -5,9 +5,29 @@ import * as THREE from 'three';
 export interface BasicAxesProps {
   axisColor?: number | string;
   gridColor?: number | string;
+  showLabels?: boolean;
+  xDomain?: [number, number];
+  yDomain?: [number, number];
+  xTickCount?: number;
+  yTickCount?: number;
+  labelColor?: number | string;
+  labelFormatter?: {
+    x?: (value: number) => string;
+    y?: (value: number) => string;
+  };
 }
 
-export function BasicAxes({ axisColor = 0x000000, gridColor = 0xcccccc }: BasicAxesProps = {}) {
+export function BasicAxes({
+  axisColor = 0x000000,
+  gridColor = 0xcccccc,
+  showLabels = false,
+  xDomain,
+  yDomain,
+  xTickCount = 5,
+  yTickCount = 5,
+  labelColor = 0x666666,
+  labelFormatter,
+}: BasicAxesProps = {}) {
   const { viewport, camera } = useThree();
 
   // Convert colors

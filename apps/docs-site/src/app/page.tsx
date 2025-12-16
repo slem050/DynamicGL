@@ -1,9 +1,11 @@
 'use client';
 
-import { ChartCanvas, BasicAxes } from '@dynamicgl/react';
+import { ChartCanvas, LiveLineChart, useMockStream } from '@dynamicgl/react';
 import { darkTheme } from '@dynamicgl/theme';
 
 export default function Home() {
+  const streamData = useMockStream(50, () => Math.sin(Date.now() / 1000) * 50 + 50);
+
   return (
     <main style={{ padding: '2rem', minHeight: '100vh' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -17,13 +19,26 @@ export default function Home() {
         </header>
 
         <section style={{ marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Coordinate System</h2>
+          <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Live Line Chart</h2>
           <p style={{ color: '#999', marginBottom: '2rem' }}>
-            X and Y axes with grid - white background, black axes, gray grid.
+            Chart with customizable colors, axes, grid, and labels - all as optional props.
           </p>
-          <div style={{ width: '100%', height: '400px', border: '1px solid #333', borderRadius: '8px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '400px', border: '1px solid #333', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
             <ChartCanvas height={400} backgroundColor="#ffffff">
-              <BasicAxes axisColor="#000000" gridColor="#cccccc" />
+              <LiveLineChart
+                data={streamData}
+                color={darkTheme.chartColors[0]}
+                windowMs={10000}
+                autoScaleY
+                axisColor="#000000"
+                gridColor="#cccccc"
+                showAxes={true}
+                showGrid={true}
+                showLabels={true}
+                xTickCount={5}
+                yTickCount={5}
+                labelColor="#666666"
+              />
             </ChartCanvas>
           </div>
         </section>

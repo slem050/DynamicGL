@@ -19,5 +19,20 @@ export interface LiveLineChartProps {
   yDomain?: [number, number];
   autoScaleY?: boolean;
   yPadding?: number;
+  // Styling options
+  backgroundColor?: string | number;
+  axisColor?: string | number;
+  gridColor?: string | number;
+  showAxes?: boolean;
+  showGrid?: boolean;
+  // Label options
+  showLabels?: boolean;
+  xTickCount?: number;
+  yTickCount?: number;
+  labelColor?: string;
+  labelFormatter?: {
+    x?: (value: number) => string;
+    y?: (value: number) => string;
+  };
 }
 
