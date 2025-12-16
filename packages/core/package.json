@@ -1,0 +1,32 @@
+{
+  "name": "@dynamicgl/core",
+  "version": "0.1.0",
+  "description": "Pure engine layer for DynamicGL - coordinate system, scaling, and utilities",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'linting core'"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.160.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.6.4"
+  },
+  "files": [
+    "dist"
+  ]
+}
+

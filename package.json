@@ -1,0 +1,23 @@
+{
+  "name": "dynamicgl",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GPU-accelerated charting framework for real-time data",
+  "scripts": {
+    "dev": "pnpm build:packages && pnpm --filter docs-site dev",
+    "build": "pnpm build:packages && pnpm --filter docs-site build",
+    "build:packages": "pnpm --filter @dynamicgl/core build && pnpm --filter @dynamicgl/charts build && pnpm --filter @dynamicgl/theme build && pnpm --filter @dynamicgl/react build",
+    "prepare": "pnpm build:packages",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  }
+}
+
