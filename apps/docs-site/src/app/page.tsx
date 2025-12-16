@@ -22,7 +22,7 @@ export default function Home() {
             X and Y axes with grid - white background, black axes, gray grid.
           </p>
           <div style={{ width: '100%', height: '400px', border: '1px solid #333', borderRadius: '8px', overflow: 'hidden' }}>
-            <ChartCanvas width={800} height={400} backgroundColor="#ffffff">
+            <ChartCanvas height={400} backgroundColor="#ffffff">
               <BasicAxes axisColor="#000000" gridColor="#cccccc" />
             </ChartCanvas>
           </div>

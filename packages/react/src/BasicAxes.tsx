@@ -8,7 +8,7 @@ export interface BasicAxesProps {
 }
 
 export function BasicAxes({ axisColor = 0x000000, gridColor = 0xcccccc }: BasicAxesProps = {}) {
-  const { viewport } = useThree();
+  const { viewport, camera } = useThree();
 
   // Convert colors
   const axisColorNum = typeof axisColor === 'string' 
@@ -18,10 +18,14 @@ export function BasicAxes({ axisColor = 0x000000, gridColor = 0xcccccc }: BasicA
     ? parseInt(gridColor.replace('#', ''), 16)
     : gridColor;
 
-  // Calculate aspect ratio
-  const aspect = viewport.width > 0 && viewport.height > 0 
-    ? viewport.width / viewport.height 
-    : 2; // Default for 800x400
+  // Calculate aspect ratio from camera if orthographic, otherwise use viewport
+  let aspect = 2; // Default
+  if (camera instanceof THREE.OrthographicCamera) {
+    // For orthographic camera, calculate from camera bounds
+    aspect = (camera.right - camera.left) / (camera.top - camera.bottom);
+  } else if (viewport.width > 0 && viewport.height > 0) {
+    aspect = viewport.width / viewport.height;
+  }
 
   // Create axes and grid using useMemo
   const { xAxis, yAxis, gridLines } = useMemo(() => {

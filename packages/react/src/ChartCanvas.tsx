@@ -23,19 +23,13 @@ export function ChartCanvas({
   const [dimensions, setDimensions] = useState({ width: width ?? 800, height: height ?? 600 });
 
   useEffect(() => {
-    if (width && height) {
-      setDimensions({ width, height });
-      onResize?.(width, height);
-      return;
-    }
-
     const container = containerRef.current;
     if (!container) return;
 
     const updateDimensions = () => {
       const rect = container.getBoundingClientRect();
       const newWidth = rect.width;
-      const newHeight = rect.height;
+      const newHeight = height ? height : rect.height;
       setDimensions({ width: newWidth, height: newHeight });
       onResize?.(newWidth, newHeight);
     };
@@ -50,13 +44,13 @@ export function ChartCanvas({
     return () => {
       resizeObserver.disconnect();
     };
-  }, [width, height, onResize]);
+  }, [height, onResize]);
 
   return (
     <div
       ref={containerRef}
       style={{
-        width: width ? `${width}px` : '100%',
+        width: '100%',
         height: height ? `${height}px` : '100%',
         position: 'relative',
       }}
@@ -84,8 +78,6 @@ export function ChartCanvas({
             ? backgroundColor 
             : `#${backgroundColor.toString(16).padStart(6, '0')}`;
           scene.background = new THREE.Color(bgColor);
-          // Ensure canvas fills container
-          gl.setSize(dimensions.width, dimensions.height);
         }}
       >
         <CameraController width={dimensions.width} height={dimensions.height} />
@@ -99,7 +91,7 @@ export function ChartCanvas({
  * Camera controller component to set up orthographic camera
  */
 function CameraController({ width, height }: { width: number; height: number }) {
-  const { camera } = useThree();
+  const { camera, gl, size } = useThree();
 
   useEffect(() => {
     if (camera instanceof THREE.OrthographicCamera && width > 0 && height > 0) {
@@ -110,8 +102,11 @@ function CameraController({ width, height }: { width: number; height: number }) 
       camera.bottom = -1;
       camera.zoom = 1;
       camera.updateProjectionMatrix();
+      
+      // Update renderer size to match container
+      gl.setSize(width, height, false);
     }
-  }, [camera, width, height]);
+  }, [camera, width, height, gl]);
 
   return null;
 }
