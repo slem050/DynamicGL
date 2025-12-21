@@ -2,6 +2,19 @@
   "name": "@dynamicgl/core",
   "version": "0.1.0",
   "description": "Pure engine layer for DynamicGL - coordinate system, scaling, and utilities",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/DynamicGL.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "chart",
+    "webgl",
+    "three.js",
+    "coordinate-system",
+    "scaling"
+  ],
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -10,6 +23,9 @@
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "vite build",

@@ -2,6 +2,18 @@
   "name": "@dynamicgl/theme",
   "version": "0.1.0",
   "description": "Theming and styling for DynamicGL - colors, presets, and tokens",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/DynamicGL.git",
+    "directory": "packages/theme"
+  },
+  "keywords": [
+    "chart",
+    "theme",
+    "colors",
+    "styling"
+  ],
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -10,6 +22,9 @@
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "vite build",

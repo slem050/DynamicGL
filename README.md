@@ -110,7 +110,7 @@ Styling and theming.
 
 ## 🚀 Getting Started
 
-### Installation
+### Development Setup
 
 ```bash
 # Clone the repository
@@ -121,10 +121,23 @@ cd DynamicGL
 pnpm install
 
 # Build all packages
-pnpm build
+pnpm build:packages
 
 # Start the docs site
 pnpm dev
+```
+
+### Using Published Packages
+
+Once published to npm:
+
+```bash
+npm install @dynamicgl/react @dynamicgl/core @dynamicgl/charts @dynamicgl/theme
+```
+
+Or with pnpm:
+```bash
+pnpm add @dynamicgl/react @dynamicgl/core @dynamicgl/charts @dynamicgl/theme
 ```
 
 ### Basic Usage
@@ -289,6 +302,37 @@ Future extensions:
 - ✅ No per-frame allocations
 - ✅ No unnecessary re-renders
 - ✅ Clear documentation
+
+## 🚀 Publishing & Deployment
+
+### Publishing to NPM
+
+1. **Setup NPM token:**
+   - Create an npm access token at https://www.npmjs.com/settings/YOUR_USERNAME/tokens
+   - Add it as `NPM_TOKEN` in GitHub Secrets
+
+2. **Publish via GitHub Actions:**
+   - Create a new GitHub Release
+   - The `publish.yml` workflow will automatically publish all packages
+
+3. **Or publish manually:**
+   ```bash
+   pnpm publish:packages
+   ```
+
+### Deploying Documentation
+
+The documentation site can be deployed to Vercel, Netlify, or any static hosting service.
+
+**Vercel (Recommended):**
+1. Install Vercel CLI: `npm i -g vercel`
+2. Add Vercel tokens to GitHub Secrets:
+   - `VERCEL_TOKEN`
+   - `VERCEL_ORG_ID`
+   - `VERCEL_PROJECT_ID`
+3. Push to main branch → Auto-deploys via GitHub Actions
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
 
 ## 📄 License
 
