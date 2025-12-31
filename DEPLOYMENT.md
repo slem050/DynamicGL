@@ -20,7 +20,7 @@ This guide explains how to publish packages to npm and deploy the documentation 
    - Add a new secret: `NPM_TOKEN` with your npm token
 
 2. **Update repository URLs in package.json files:**
-   - Replace `yourusername` with your GitHub username in all package.json files
+   - Replace `slem050` with your GitHub username in all package.json files
 
 ### Publishing
 

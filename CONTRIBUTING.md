@@ -6,7 +6,7 @@ Thank you for your interest in contributing to DynamicGL! This document provides
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/DynamicGL.git
+   git clone https://github.com/slem050/DynamicGL.git
    cd DynamicGL
    ```
 

@@ -40,6 +40,8 @@ jobs:
       
       - name: Build docs site
         run: pnpm build:docs
+        env:
+          GITHUB_PAGES: 'true'
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
