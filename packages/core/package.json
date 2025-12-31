@@ -1,7 +1,7 @@
 {
   "name": "@dynamicgl/core",
   "version": "0.1.0",
-  "description": "Pure engine layer for DynamicGL - coordinate system, scaling, and utilities",
+  "description": "Core engine for DynamicGL - GPU-accelerated charting framework. Provides coordinate systems, scaling utilities, axes, grids, and mathematical helpers for real-time data visualization.",
   "license": "MIT",
   "repository": {
     "type": "git",

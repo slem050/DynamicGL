@@ -1,7 +1,7 @@
 {
   "name": "@dynamicgl/charts",
   "version": "0.1.0",
-  "description": "Chart implementations for DynamicGL - GPU-optimized geometry and buffers",
+  "description": "Chart implementations for DynamicGL - GPU-optimized geometry and buffer management. Includes live line charts with ring buffers, efficient data updates, and WebGL-accelerated rendering for real-time streaming data.",
   "license": "MIT",
   "repository": {
     "type": "git",

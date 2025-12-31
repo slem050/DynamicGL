@@ -1,7 +1,7 @@
 {
   "name": "@dynamicgl/react",
   "version": "0.1.0",
-  "description": "React components for DynamicGL - public API",
+  "description": "React components for DynamicGL - GPU-accelerated real-time charts. Easy-to-use React hooks and components for building high-performance live data visualizations with WebGL. Includes LiveLineChart, ChartCanvas, and data streaming utilities.",
   "license": "MIT",
   "repository": {
     "type": "git",

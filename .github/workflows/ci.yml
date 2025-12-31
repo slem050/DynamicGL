@@ -138,6 +138,7 @@ jobs:
           node-version: '18'
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
+          scope: '@dynamicgl'
       
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -145,22 +146,14 @@ jobs:
       - name: Build packages
         run: pnpm build:lib
       
+      # Publish core first (required by charts)
       - name: Publish @dynamicgl/core
-        run: pnpm --filter @dynamicgl/core publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+        run: pnpm --filter @dynamicgl/core publish --access public --no-git-checks --provenance
       
+      # Publish charts (main package)
       - name: Publish @dynamicgl/charts
-        run: pnpm --filter @dynamicgl/charts publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+        run: pnpm --filter @dynamicgl/charts publish --access public --no-git-checks --provenance
       
-      - name: Publish @dynamicgl/theme
-        run: pnpm --filter @dynamicgl/theme publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-      
+      # Publish react (optional - for React users)
       - name: Publish @dynamicgl/react
-        run: pnpm --filter @dynamicgl/react publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+        run: pnpm --filter @dynamicgl/react publish --access public --no-git-checks --provenance
