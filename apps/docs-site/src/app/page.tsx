@@ -10,7 +10,7 @@ export default function Home() {
     <main style={{ padding: '2rem', minHeight: '100vh' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <header style={{ marginBottom: '3rem' }}>
-          <h1 style={{ fontSize: '3rem', marginBottom: '1rem', color: darkTheme.chartColors[0] }}>
+          <h1 style={{ fontSize: '3rem', marginBottom: '1rem', color: String(darkTheme.chartColors[0]) }}>
             DynamicGL
           </h1>
           <p style={{ fontSize: '1.25rem', color: '#999', marginBottom: '2rem' }}>

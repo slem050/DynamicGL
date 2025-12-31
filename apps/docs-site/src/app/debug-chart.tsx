@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useRef, useEffect } from 'react';
 import { ChartCanvas } from '@dynamicgl/react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -14,9 +15,9 @@ export function DebugChart() {
 }
 
 function TestLine() {
-  const lineRef = React.useRef<THREE.Line>(null);
+  const lineRef = useRef<THREE.Line | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!lineRef.current) {
       const points = [
         new THREE.Vector3(-1, -0.5, 0),
