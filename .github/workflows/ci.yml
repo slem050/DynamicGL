@@ -8,6 +8,12 @@ on:
   release:
     types: [created]
   workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish packages to NPM'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -110,7 +116,7 @@ jobs:
   # Publish packages to NPM
   publish:
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.publish == 'true')
+    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.publish == true)
     permissions:
       contents: read
       id-token: write
