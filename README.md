@@ -55,7 +55,7 @@ pnpm dev
 
 ## 📚 Documentation
 
-Visit the [documentation site](https://slem050.github.io/DynamicGL/) or run locally:
+Visit the [documentation site](https://slem050.github.io/DynamicGL) or run locally:
 
 ```bash
 pnpm dev
