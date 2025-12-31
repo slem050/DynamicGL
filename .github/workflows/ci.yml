@@ -12,8 +12,11 @@ on:
       publish:
         description: 'Publish packages to NPM'
         required: false
-        type: boolean
-        default: false
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+        default: 'false'
 
 permissions:
   contents: read
