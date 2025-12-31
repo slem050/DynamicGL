@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { ChartCanvasProps } from './types';
+import { ChartCanvasProps } from '../../types/types';
 
 /**
  * ChartCanvas - Container component that owns the Three.js renderer

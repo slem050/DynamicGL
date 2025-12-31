@@ -4,21 +4,27 @@
   "private": true,
   "description": "GPU-accelerated charting framework for real-time data",
   "scripts": {
-    "dev": "pnpm build:packages && pnpm --filter docs-site dev",
-    "build": "pnpm build:packages && pnpm --filter docs-site build",
-    "build:packages": "pnpm --filter @dynamicgl/core build && pnpm --filter @dynamicgl/charts build && pnpm --filter @dynamicgl/theme build && pnpm --filter @dynamicgl/react build",
-    "prepare": "pnpm build:packages",
-    "typecheck": "pnpm -r typecheck",
-    "lint": "pnpm -r lint",
-    "publish:packages": "pnpm build:packages && pnpm --filter @dynamicgl/core publish --access public --no-git-checks && pnpm --filter @dynamicgl/charts publish --access public --no-git-checks && pnpm --filter @dynamicgl/theme publish --access public --no-git-checks && pnpm --filter @dynamicgl/react publish --access public --no-git-checks"
+    "dev": "nx run docs-site:serve",
+    "build": "nx run-many --target=build --all",
+    "build:lib": "nx run-many --target=build --projects=core,charts,theme,react",
+    "build:docs": "nx run docs-site:build",
+    "typecheck": "nx run-many --target=typecheck --all",
+    "lint": "nx run-many --target=lint --all",
+    "graph": "nx graph",
+    "publish:packages": "nx run-many --target=build --projects=core,charts,theme,react && pnpm --filter @dynamicgl/core publish --access public --no-git-checks && pnpm --filter @dynamicgl/charts publish --access public --no-git-checks && pnpm --filter @dynamicgl/theme publish --access public --no-git-checks && pnpm --filter @dynamicgl/react publish --access public --no-git-checks"
   },
   "devDependencies": {
+    "@nx/next": "^22.3.3",
+    "@nx/vite": "^22.3.3",
+    "@nx/workspace": "^22.3.3",
     "@types/node": "^20.10.0",
-    "typescript": "^5.3.3"
+    "nx": "^22.3.3",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.6.4"
   },
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"
   }
 }
-

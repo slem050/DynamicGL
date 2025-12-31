@@ -1,7 +1,8 @@
 {
-  "buildCommand": "cd ../.. && pnpm build:packages && pnpm --filter docs-site build",
+  "buildCommand": "pnpm build:lib && pnpm build:docs",
   "outputDirectory": "apps/docs-site/.next",
   "installCommand": "pnpm install --frozen-lockfile",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "rootDirectory": "apps/docs-site"
 }
 
